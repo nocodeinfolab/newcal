@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            margin: 0; 
+            font-family: Arial, sans-serif; 
+            background-color: #f0f0f0;
+        }
+        #result-box { 
+            font-size: 48px; 
+            font-weight: bold; 
+            padding: 20px; 
+            background-color: #fff; 
+            border: 2px solid #ccc; 
+            border-radius: 10px; 
+            text-align: center; 
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <script>
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        function calculateSum() {
+            const numbers = getQueryParam('numbers') ? getQueryParam('numbers').split(',') : [];
+            let result = 0;
+
+            numbers.forEach(num => {
+                const parsedNum = parseFloat(num);
+                if (!isNaN(parsedNum)) {
+                    result += parsedNum; // Sum each valid number
+                }
+            });
+
+            document.getElementById('result-box').innerText = result;
+        }
+
+        window.onload = calculateSum;
+    </script>
+</head>
+<body>
+    <div id="result-box">0</div>
+</body>
+</html>
